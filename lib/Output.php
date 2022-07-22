@@ -9,7 +9,7 @@ class Output
    * 
    * @return void 
    */
-  public static function json ($ieSupport=false)
+  public static function json ()
   {
     header('Content-Type: application/json');
   }
