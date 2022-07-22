@@ -1,0 +1,32 @@
+{
+  "name": "lum/lum-web",
+  "description": "Simple libraries for web-apps",
+  "license": "MIT",
+  "authors":
+  [
+    {
+      "name": "Timothy Totten",
+      "email": "supernovus@gmail.com",
+      "role": "Original Author"
+    }
+  ],
+  "require":
+  {
+    "lum/lum-file": "^2.2",
+    "lum/lum-encode": "^3.3"
+  },
+  "autoload":
+  {
+    "psr-4":
+    {
+      "Lum\\Web\\": "lib"
+    }
+  },
+  "extra":
+  {
+    "branch-alias":
+    {
+      "dev-main": "1.x-dev"
+    }
+  }
+}
