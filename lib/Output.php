@@ -2,8 +2,31 @@
 
 namespace Lum\Web;
 
+use Lum\File\MIME;
+
 class Output
 {
+  const AT = 'Accept: ';
+  const CT = 'Content-Type: ';
+  const CC = 'Cache-Control: ';
+
+  /**
+   * Set a Content-Type header.
+   */
+  public static function contentType(string $ctype)
+  {
+    header(static::CT.$ctype);
+  }
+
+  /**
+   * Set an Accept header quickly.
+   */
+  public static function accept(string $ctype)
+  {
+    header(static::AT.$ctype);
+  }
+
+
   /**
    * Set headers for JSON output.
    * 
@@ -11,7 +34,7 @@ class Output
    */
   public static function json ()
   {
-    header('Content-Type: application/json');
+    header(static::CT.MIME::APP_JSON);
   }
 
   /**
@@ -27,12 +50,22 @@ class Output
   {
     if ($text)
     {
-      header('Content-Type: text/xml');
+      header(static::CT.MIME::TEXT_XML);
     }
     else
     {
-      header('Content-Type: application/xml');
+      header(static::CT.MIME::APP_XML);
     }
+  }
+
+  public static function css()
+  {
+    header(static::CT.MIME::TEXT_CSS);
+  }
+
+  public static function js()
+  {
+    header(static::CT.MIME::TEXT_JS);
   }
 
   /**
