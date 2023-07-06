@@ -140,11 +140,15 @@ class Url
   /** 
    * Return our current request URI.
    */
-  public static function request_uri (): string
+  public static function request_uri (bool $withQuery=true): string
   {
     if (isset($_SERVER['REQUEST_URI']))
     {
-      return $_SERVER['REQUEST_URI'];
+       $uri = $_SERVER['REQUEST_URI'];
+       if (!$withQuery && ($pos = strpos($uri, '?')) !== False)
+       {
+         $uri = substr($uri, 0, $pos);
+       }
     }
     else
     {
@@ -153,14 +157,14 @@ class Url
       {
         $uri .= '/' . $_SERVER['PATH_INFO'];
       }
-      if (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] != '')
+      if ($withQuery && isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] != '')
       {
         $uri .= '?' . $_SERVER['QUERY_STRING'];
       }
       $uri = '/' . ltrim($uri, '/');
-
-      return $uri;
     }
+
+    return $uri;
   }
 
   /** 
